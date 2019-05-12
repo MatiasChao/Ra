@@ -18,17 +18,30 @@ connection.connect((err) => {
       return;
   } else {
     console.log('Connection established');
+
+    // innecesarios (?)
+    // response.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    // response.setHeader('Access-Control-Allow-Methods', 'GET');
+    
     connection.query('SELECT id, name, translate FROM phrases', {json: true}, function(error, result){
       if (error) {
         console.log('Error en la Query ' + error);
       } else {
-        router.get('/phrases', (error, response) => { 
-          response.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-          response.setHeader('Access-Control-Allow-Methods', 'GET');
+        router.get('/phrases', (error, response) => {       
           response.send(JSON.parse(JSON.stringify(result)));
         })
       }
     });
+
+    connection.query('SELECT id, name, translate FROM word', {json: true}, function(error, result){
+      if (error) {
+        console.log('Error en la Query ' + error);
+      } else {
+        router.get('/words', (error, response) => { 
+          response.send(JSON.parse(JSON.stringify(result)));
+        });
+      }
+    })
   }
 });
 
