@@ -1,9 +1,11 @@
 // app.js
-
 'user strict';
 const mysql = require('mysql');
 const express = require('express');
 const router = express.Router();
+
+//const {parse, stringify} = require('../../node_modules/flatted/cjs');
+const request = require('request');
 
 // First you need to create a connection to the db
 const connection = mysql.createConnection({
@@ -16,27 +18,71 @@ const connection = mysql.createConnection({
     database: 'losdosca_english'
 });
 
-connection.connect((err) => {
-  if(err){
-      console.log(err);
-      console.log('Error connecting to Db');
-      return;
-  }
+function abrirConexion() { 
 
-  console.log('Connection established');
-  
-  connection.query('SELECT id, name, translate FROM phrases', [1], function(error, result){
-    if(error){
-      console.log('Error en la Query ' + error);
-    }else{
-      console.log(result);
+  connection.connect((err) => {
+    if(err){
+        console.log(err);
+        console.log('Error connecting to Db');
+        return;
     }
-});
-});
+
+    console.log('Connection established');
+    
+    connection.query('SELECT id, name, translate FROM phrases', {json: true}, function(error, result){
+      if(error){
+        console.log('Error en la Query ' + error);
+      }else{
+        console.log(result);
+        router.get('/phrases', (error, response) => { 
+          console.log("llegando a /phrases");
+          if (error) throw error;  
+          response.send(result);
+        })
+      }
+  });
+  });
+}
+
+abrirConexion();
+
+module.exports = router;
+//console.log("aca la llamo");
+
+/*
+const pool = mysql.createPool(connection);
+
+router.get('/phrases', (request, response) => {    
+  //var q = request.query.q
+  // var access_token = response.query.access_token
+
+  abrirConexion();
+  console.log("hola mundo");
+
+  pool.query('SELECT * FROM phrases', (error, result) => {
+    if (error) throw error;
+
+    response.send(result);
+  });
+
+  response.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+  response.setHeader('Access-Control-Allow-Methods', 'GET');
+
+  //https://api.mercadolibre.com/sites/MLA/search?q=​:query
+  /**
+  pool.query('Select * from phrases', {json: true}, (err, res2, req2) => {
+      if(err) return console.log('error:', err);
+      res.status(res2.statusCode).send(JSON.stringify(res2.body))
+  })
+   */
 
 
 
-module.exports = connection;
+//});
+
+//module.exports = router;
+
+//module.exports = connection;
 //router.get('/phrases', function(req, res) {
 
   /*
@@ -59,23 +105,11 @@ module.exports = connection;
 //});
 
 */
-router.get('/prhases', (req, res) => {    
-  var q = req.query.q
-  var access_token = req.query.access_token
 
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-  res.setHeader('Access-Control-Allow-Methods', 'GET');
-
-  //https://api.mercadolibre.com/sites/MLA/search?q=​:query
-  request.query('Select * from phrases', {json: true}, (err, res2, req2) => {
-      if(err) return console.log('error:', err);
-      res.status(res2.statusCode).send(JSON.stringify(res2.body))
-  })
-});
 
 
 // Exportar la variable como modulo
-exports.connection = connection;
+//exports.connection = connection;
 
 /*
 connection.end((err) => {

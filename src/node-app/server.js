@@ -2,8 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const routes = require('./conexion_mysql');
-//const query = require('./query');
-const router = express.Router();
 
 const root = './';
 const port = process.env.PORT || '3000';
