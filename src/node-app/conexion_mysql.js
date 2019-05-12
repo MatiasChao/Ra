@@ -3,6 +3,8 @@
 const mysql = require('mysql');
 const express = require('express');
 const router = express.Router();
+const CircularJSON = require('circular-json');
+var stringify = require('json-stringify-safe');
 
 //const {parse, stringify} = require('../../node_modules/flatted/cjs');
 const request = require('request');
@@ -30,14 +32,13 @@ function abrirConexion() {
     console.log('Connection established');
     
     connection.query('SELECT id, name, translate FROM phrases', {json: true}, function(error, result){
-      if(error){
+      if (error) {
         console.log('Error en la Query ' + error);
-      }else{
-        console.log(result);
+      } else {
         router.get('/phrases', (error, response) => { 
-          console.log("llegando a /phrases");
-          if (error) throw error;  
-          response.send(result);
+          response.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+          response.setHeader('Access-Control-Allow-Methods', 'GET');
+          response.send(JSON.parse(JSON.stringify(result)));
         })
       }
   });
