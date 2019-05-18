@@ -1,5 +1,33 @@
-<p>
-  phrases works!
-  <span>HOLA !!!!!</span>
-</p>
+
+  
+  <h1>TESTING PRHASES</h1>
+
+
+<div *ngFor="let i of list_prhases">
+  <span>{{i.name}}</span>
+  <input type="text" ng-model="i.translate" name="translate[i]" />
+
+
+  
+</div>
+
+
+<button (click)="validateForm()">Validate</button>
+
+
+<div class="container">
+  <h2>Contextual Colors</h2>
+  <p>Use the contextual classes to provide "meaning through colors":</p>
+  <p class="text-muted">This text is muted.</p>
+  <p class="text-primary">This text is important.</p>
+  <p class="text-success">This text indicates success.</p>
+  <p class="text-info">This text represents some information.</p>
+  <p class="text-warning">This text represents a warning.</p>
+  <p class="text-danger">This text represents danger.</p>
+  <p class="text-secondary">Secondary text.</p>
+  <p class="text-dark">This text is dark grey.</p>
+  <p class="text-body">Default body color (often black).</p>
+  <p class="text-light">This text is light grey (on white background).</p>
+  <p class="text-white">This text is white (on white background).</p>
+</div>
 
