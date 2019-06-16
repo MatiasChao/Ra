@@ -9,12 +9,18 @@ import { routing, appRoutingProviders } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';
+import { WordsComponent } from './words/words.component';
+import { VerbTensesComponent } from './verb-tenses/verb-tenses.component';
+import { OthersComponent } from './others/others.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PhrasesComponent,
-    MenuComponent
+    MenuComponent,
+    WordsComponent,
+    VerbTensesComponent,
+    OthersComponent
   ],
   imports: [
     BrowserModule,
