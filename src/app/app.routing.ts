@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PhrasesComponent } from './phrases/phrases.component';
 import { WordsComponent } from './words/words.component';
 import { HomeComponent } from './home/home.component';
+import { OthersComponent } from './others/others.component';
 import { VerbTensesComponent } from './verb-tenses/verb-tenses.component';
 
 const appRoutes: Routes = [
@@ -12,6 +13,7 @@ const appRoutes: Routes = [
     { path: 'words', component: WordsComponent},
     { path: 'tenses', component: VerbTensesComponent},
     { path: 'home', component: PhrasesComponent},
+    { path: 'others', component: OthersComponent},
     { path: '**', component: HomeComponent}
 ];
 

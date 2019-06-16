@@ -1,8 +1,8 @@
 <div class="container">
-    <h2>TESTING PRHASES</h2>
-    <div *ngFor="let i of list_prhases; let j = index">
-        <span class="text-info">{{i.name}}</span>
-        <input type="text" ng-model="i.translate" [(ngModel)]="translate[j]" />
+    <h2>PRAHSES</h2>
+    <div *ngFor="let i of list_prhases; let j = index" class="mt-2">
+        <span class="text-info mr-2">{{i.name}}</span>
+        <input type="text" class="mr-2" ng-model="i.translate" [(ngModel)]="translate[j]" />
         <span>{{i.translate}}</span>
     </div>
 
