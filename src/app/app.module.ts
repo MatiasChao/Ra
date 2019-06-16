@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { WordsComponent } from './words/words.component';
 import { VerbTensesComponent } from './verb-tenses/verb-tenses.component';
 import { OthersComponent } from './others/others.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { OthersComponent } from './others/others.component';
     MenuComponent,
     WordsComponent,
     VerbTensesComponent,
-    OthersComponent
+    OthersComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
