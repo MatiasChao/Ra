@@ -5,6 +5,7 @@ var mysql = require('mysql');
 // Nuestra conexion dentro de bin
 var connection = require('../node-app/conexion_mysql');
 const request = require('request');
+const app = express();
  
 
 
@@ -29,6 +30,36 @@ Phrase.getAllPrhases = function getAllPrhases(result) {
       });   
 };
 
+let word = {
+  name: 'Matias',
+  translate: 'prueba'
+};
+
+app.post('/words', function (req, res){
+  if(!req.body.name || req.body.translate) {
+    respuesta = {
+      error: true,
+      codigo: 502,
+      mensaje: 'El campo nombre y apellido son requeridos'
+    };
+  } else {
+    word = { 
+      name: req.body.name,
+      translate: req.body.translate,
+     };
+  }
+  respuesta = {
+    error: false,
+    codigo: 200,
+    mensaje: 'Usuario creado',
+    respuesta: word
+   };
+  res.send(respuesta);
+});
+
+app.listen(3000, () => {
+  console.log("El servidor está inicializado en el puerto 3000");
+ });
 
  
 // Select simple
