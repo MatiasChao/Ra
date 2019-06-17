@@ -15,7 +15,7 @@ const appRoutes: Routes = [
     { path: 'tenses', component: VerbTensesComponent},
     { path: 'home', component: PhrasesComponent},
    // { path: 'others', component: OthersComponent},
-    { path: 'login', component: LoginComponent},
+    { path: 'login', component: LoginComponent, pathMatch: 'full'},
     { path: '**', component: HomeComponent}
 ];
 
